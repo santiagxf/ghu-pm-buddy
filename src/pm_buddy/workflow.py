@@ -66,6 +66,8 @@ async def main():
             WorkflowBuilder()
             .add_agent(format_agent, id="format-agent")
             .add_agent(investigate_agent, id="investigate-agent")
+            .add_agent(refine_agent, id="refine-agent")
+            .add_agent(root_cause_agent, id="root-cause-agent")
             .set_start_executor(format_agent)
             .add_edge(format_agent, investigate_agent, has_label_condition("enhancement"))
             .add_edge(format_agent, root_cause_agent, has_label_condition("bug"))
@@ -102,8 +104,6 @@ if __name__ == "__main__":
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
         handlers=[logging.StreamHandler()]
     )
-
-    # load .env file if it exists
 
     load_dotenv()
 

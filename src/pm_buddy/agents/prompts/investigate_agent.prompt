@@ -44,7 +44,7 @@ Follow these steps systematically:
 Provide a comprehensive summary in the following format:
 
 ### Description
-A clear, concise statement of what the issue aims to achieve or resolve. Rephrase the issue in your own words to demonstrate understanding.
+A clear, concise statement of what the issue aims to achieve or resolve. Rephrase the issue in your own words to demonstrate understanding. Keep it straight to the points.
 
 ### Why It Is Important
 - Explain the impact on users, system functionality, or codebase health
@@ -54,8 +54,7 @@ A clear, concise statement of what the issue aims to achieve or resolve. Rephras
 
 ### Implementation References
 For each relevant file, provide:
-- **`path/to/file.ext`** - [Brief description of why this file needs attention and what aspect needs modification]
-  - Link to the file in the repository
+- `[**path/to/file.ext**](**Link to the file in the repository**)` - [Brief description of why this file needs attention and what aspect needs modification]
 
 Only include files that are directly relevant to implementing a solution. Avoid listing files that are only tangentially related.
 
@@ -77,5 +76,5 @@ Only include issues with meaningful connections. Avoid listing issues that merel
 ## Final actions:
 
 1. Remove label `investigate`.
-2. Create a comment in the issue with the report.
+2. Create a comment in the issue with the report. Only include the sections mentioned above. Do not add any other text.
 3. Add the label `needs-refinement`.
