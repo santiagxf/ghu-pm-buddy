@@ -1747,13 +1747,19 @@ wheels = [
 [[package]]
 name = "pm-buddy"
 version = "0.1.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "agent-framework" },
+    { name = "python-dotenv" },
+    { name = "tenacity" },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "agent-framework", specifier = ">=1.0.0b251007" }]
+requires-dist = [
+    { name = "agent-framework", specifier = ">=1.0.0b251007" },
+    { name = "python-dotenv", specifier = ">=1.1.1" },
+    { name = "tenacity", specifier = ">=8.0.0" },
+]
 
 [[package]]
 name = "portalocker"

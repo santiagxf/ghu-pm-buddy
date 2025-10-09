@@ -1,4 +1,8 @@
 {
     "python-envs.defaultEnvManager": "ms-python.python:system",
-    "python-envs.pythonProjects": []
+    "python-envs.pythonProjects": [],
+    "python.analysis.extraPaths": ["./pm_buddy"],
+    "python.analysis.autoSearchPaths": true,
+    "python.defaultInterpreterPath": "./pm_buddy/.venv/bin/python",
+    "python.terminal.activateEnvironment": true
 }

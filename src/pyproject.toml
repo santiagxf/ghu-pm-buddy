@@ -1,0 +1,19 @@
+[project]
+name = "pm_buddy"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "agent-framework>=1.0.0b251007",
+    "python-dotenv>=1.1.1",
+    "tenacity>=8.0.0",
+]
+
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["./"]
+include = ["pm_buddy"]

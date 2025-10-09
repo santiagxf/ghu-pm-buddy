@@ -7,7 +7,7 @@ This section mentions the prerequisites to run the demo.
 Follow this steps to get the environment ready:
 
 1. Open the repository in GitHub Codespaces.
-1. Install the AI Toolkit extension:
+1. Install the [AI Toolkit extension](https://github.com/microsoft/Azure-AI-Foundry-Extension-VSCode-Preview/blob/main/extension/vscode-ai-foundry-0.10.1.vsix):
     - From command pallet type: `Extensions: Install from VSIX`
     - Navigate to the folder `extensions` and install both of the files.
     - Reload the window.
@@ -20,3 +20,10 @@ Follow this steps to get the environment ready:
 3. Install packages.
     - Move to the folder `pm-buddy`.
     - Restore the project with `uv sync`.
+
+4. Configure `uv` environment file:
+    - Edit `~/.bashrc` and add `export UV_ENV_FILE=".env"` 
+
+5. Install the Azure CLI tool:
+    - Run `https://aka.ms/InstallAzureCLIDeb | sudo bash`
+    - Login to Azure with `az login`. Use `az login --tenant 7f292395-a08f-4cc0-b3d0-a400b023b0d2`
