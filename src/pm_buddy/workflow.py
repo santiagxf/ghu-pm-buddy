@@ -1,73 +1,44 @@
 # Copyright (c) Microsoft. All rights reserved.
 
 import asyncio
+import logging
 import os
-from typing import override
-from agent_framework.exceptions import ServiceResponseException
-from agent_framework_azure_ai import AzureAIAgentClient
+from typing import Callable
 from dotenv import load_dotenv
-from opentelemetry import trace
 from opentelemetry.trace import SpanKind
-from agent_framework.observability import setup_observability
+from agent_framework.observability import setup_observability, get_tracer
 
 from agent_framework import (
     AgentExecutorResponse,
-    __version__,
     AgentRunEvent,
     WorkflowBuilder,
 )
-from agent_framework.azure import AzureOpenAIChatClient
 from azure.identity import AzureCliCredential
-#from azure.ai.projects import AIProjectClient
 
-from pm_buddy.agents import IssueFormatAgent, RefineAgent, InvestigateAgent
+from pm_buddy.agents import IssueFormatAgent, RefineAgent, InvestigateAgent, RootCauseAnalysisAgent
 from pm_buddy.agents.format_agent import GitHubIssue
+from pm_buddy.extensions.chat_clients import AzureOpenAIChatClientWithRetry
 
-from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 
+def has_label_condition(label: str) -> Callable[[AgentExecutorResponse], bool]:
+    """Generate a condition function to check if the issue has a specific label."""
 
-def is_feature_condition(response: AgentExecutorResponse) -> bool:
-    """Condition function to check if the issue is labeled as a feature."""
+    def condition(response: AgentExecutorResponse) -> bool:
+        if not isinstance(response, AgentExecutorResponse):
+            return True
 
-    if not isinstance(response, AgentExecutorResponse):
-        return True
+        issue = GitHubIssue.model_validate_json(response.agent_run_response.text)
+        return issue.labels and label in issue.labels
 
-    issue = GitHubIssue.model_validate_json(response.agent_run_response.text)
-    return issue.labels and "enhancement" in issue.labels
+    return condition
 
-def print_exception(retry_state):
-    print(f"All retry attempts failed. Last exception: {retry_state.outcome.exception()}")
-    return retry_state.outcome.result()
-
-class AzureOpenAIChatClientWithRetry(AzureOpenAIChatClient):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-    @override
-    @retry(
-        stop=stop_after_attempt(3),
-        wait=wait_exponential(multiplier=1, min=4, max=10),
-        retry=retry_if_exception_type(ServiceResponseException),
-        reraise=True,
-        retry_error_callback=print_exception
-    )
-    def get_response(self, *args, **kwargs):
-        return super().get_response(*args, **kwargs)
 
 async def main():
+    """Main function to set up and run the workflow."""
+
     model = AzureOpenAIChatClientWithRetry(
         deployment_name="gpt-4.1", credential=AzureCliCredential()
     )
-    client = AzureAIAgentClient(
-        async_credential=AzureCliCredential(),
-        model_deployment_name="gpt-4.1"
-    )
-
-    #project_client = AIProjectClient(
-    #    endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
-    #    credential=AzureCliCredential(),
-    #)
-    #thread = project_client.agents.threads.create()
 
     async with (
         IssueFormatAgent(
@@ -85,20 +56,25 @@ async def main():
             name="refine-agent",
             client=model,
         ) as refine_agent,
+        RootCauseAnalysisAgent(
+            id="root-cause-agent",
+            name="root-cause-agent",
+            client=model,
+        ) as root_cause_agent,
     ):
-        #investigation_thread = investigate_agent.get_new_thread(service_thread_id=thread.id)
         workflow = (
             WorkflowBuilder()
             .add_agent(format_agent, id="format-agent")
             .add_agent(investigate_agent, id="investigate-agent")
             .set_start_executor(format_agent)
-            .add_edge(format_agent, investigate_agent, is_feature_condition)
-            # .add_edge(investigate_agent, refine_agent)
+            .add_edge(format_agent, investigate_agent, has_label_condition("enhancement"))
+            .add_edge(format_agent, root_cause_agent, has_label_condition("bug"))
+            .add_edge(investigate_agent, refine_agent)
+            .add_edge(root_cause_agent, refine_agent)
             .build()
         )
 
-        tracer = trace.get_tracer("agent_framework", __version__)
-        with tracer.start_as_current_span(
+        with get_tracer().start_as_current_span(
             name="pm-buddy-workflow",
             kind=SpanKind.CLIENT,
             attributes={
@@ -120,6 +96,13 @@ async def main():
 
 if __name__ == "__main__":
 
+    # Configure logging to output to console
+    logging.basicConfig(
+        level=logging.WARNING,  # Set to WARNING to see warning logs
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        handlers=[logging.StreamHandler()]
+    )
+
     # load .env file if it exists
 
     load_dotenv()
@@ -129,8 +112,7 @@ if __name__ == "__main__":
         applicationinsights_connection_string=os.environ.get(
             "AGENT_FRAMEWORK_MONITOR_CONNECTION_STRING"
         ),
-        otlp_endpoint=None,
-        vs_code_extension_port=None,
+        vs_code_extension_port=4317,
     )
 
     asyncio.run(main())
