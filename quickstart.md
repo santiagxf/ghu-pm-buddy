@@ -18,7 +18,7 @@ Follow this steps to get the environment ready:
     - Type `uv --version` to confirm `uv` is installed.
 
 3. Install packages.
-    - Move to the folder `pm-buddy`.
+    - Move to the folder `src`.
     - Restore the project with `uv sync`.
 
 4. Configure `uv` environment file:
