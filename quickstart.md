@@ -22,7 +22,7 @@ Follow this steps to get the environment ready:
     - Restore the project with `uv sync`.
 
 4. Configure `uv` environment file:
-    - Edit `~/.bashrc` and add `export UV_ENV_FILE=".env"` 
+    - Edit `~/.bashrc` and add `export UV_ENV_FILE=".env" 
 
 5. Install the Azure CLI tool:
     - Run `https://aka.ms/InstallAzureCLIDeb | sudo bash`
