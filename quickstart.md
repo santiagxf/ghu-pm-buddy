@@ -15,7 +15,7 @@ Follow this steps to get the environment ready:
 
 2. Install `uv` package manager:
     - In the console type `curl -LsSf https://astral.sh/uv/install.sh | sh`
-    - Type `uv --version` to confirm `uv` is installed`.
+    - Type `uv --version` to confirm `uv` is installed.
 
 3. Install packages.
     - Move to the folder `pm-buddy`.
