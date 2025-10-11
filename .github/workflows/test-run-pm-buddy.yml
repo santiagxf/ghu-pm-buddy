@@ -13,8 +13,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
+
       - name: Run PM Buddy
         uses: ./.github/actions/run-pm-buddy
         with:
-          input: ${{ github.event.inputs.message || 'Hello from GitHub Actions!' }}
+          input: >-
+            ${{ github.event.inputs.message || 'Hello from GitHub Actions!' }}

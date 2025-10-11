@@ -12,19 +12,19 @@ runs:
       uses: actions/setup-python@v5
       with:
         python-version-file: 'src/.python-version'
-    
+
     - name: Install uv
       shell: bash
       run: |
         curl -LsSf https://astral.sh/uv/install.sh | sh
         echo "$HOME/.cargo/bin" >> $GITHUB_PATH
-    
+
     - name: Sync uv environment
       shell: bash
       working-directory: src
       run: |
         uv sync
-    
+
     - name: Run PM Buddy
       shell: bash
       working-directory: src
