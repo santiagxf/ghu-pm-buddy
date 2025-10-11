@@ -12,11 +12,6 @@ jobs:
           app-id: ${{ secrets.PMBUDDY_APP_ID }}
           private-key: ${{ secrets.PMBUDDY_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
-      - uses: peter-evans/create-or-update-comment@v3
-        with:
-          token: ${{ steps.app-token.outputs.token }}
-          issue-number: ${{ github.event.issue.number }}
-          body: "Hello, World!"
       - name: Create issue
         run: |
           new_issue_url=$(gh issue create \
