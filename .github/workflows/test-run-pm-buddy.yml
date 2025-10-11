@@ -1,0 +1,20 @@
+name: Test Run PM Buddy Action
+on:
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Message to pass to PM Buddy'
+        required: false
+        default: 'Hello from GitHub Actions!'
+
+jobs:
+  test-run-pm-buddy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Run PM Buddy
+        uses: ./.github/actions/run-pm-buddy
+        with:
+          input: ${{ github.event.inputs.message || 'Hello from GitHub Actions!' }}
