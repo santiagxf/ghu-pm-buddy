@@ -15,14 +15,16 @@ Follow this steps to get the environment ready:
 
 2. Install `uv` package manager:
     - In the console type `curl -LsSf https://astral.sh/uv/install.sh | sh`
-    - Type `uv --version` to confirm `uv` is installed`.
+    - Type `uv --version` to confirm `uv` is installed.
 
 3. Install packages.
-    - Move to the folder `pm-buddy`.
+    - Move to the folder `src`.
     - Restore the project with `uv sync`.
 
 4. Configure `uv` environment file:
-    - Edit `~/.bashrc` and add `export UV_ENV_FILE=".env"` 
+    - Edit the file `.env.example` and rename it to `.env`.
+    - Configure the environment variables indicated there.
+    - Edit `~/.bashrc` and add `export UV_ENV_FILE=".env"`.
 
 5. Install the Azure CLI tool:
     - Run `curl -LsSf https://aka.ms/InstallAzureCLIDeb | sudo bash`
