@@ -1,6 +1,6 @@
 # PM Buddy - AI-Powered GitHub Issue Management
 
-> **GitHub Universe 2025 Demo** - Building intelligent GitHub automation with AI agents and Model Context Protocol (MCP)
+> **GitHub Universe 2025** - Build intelligent, multi-agent workflows with GitHub and the Microsoft Agent Framework
 
 PM Buddy is a multi-agent workflow system that automatically triages, investigates, and refines GitHub issues. Built with the [Agent Framework](https://github.com/microsoft/agent-framework) and powered by MCP, it demonstrates how AI agents can collaborate to automate repository management tasks.
 
