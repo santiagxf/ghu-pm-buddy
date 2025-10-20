@@ -20,7 +20,7 @@ class RootCauseAnalysisAgent(ChatAgent):
                 server=MCPStreamableHTTPTool(
                     name="github-mcp",
                     url="https://api.githubcopilot.com/mcp/",
-                    headers={"Authorization": f"Bearer {os.environ['GITHUB_TOKEN']}"},
+                    headers={"Authorization": f"Bearer {os.environ['GITHUB_APP_TOKEN']}"},
                 ),
                 filter_func=lambda t: "issue" in t.name or "search" in t.name or "file" in t.name
             ),

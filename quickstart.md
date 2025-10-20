@@ -25,5 +25,9 @@ Follow this steps to get the environment ready:
     - Edit `~/.bashrc` and add `export UV_ENV_FILE=".env"` 
 
 5. Install the Azure CLI tool:
-    - Run `https://aka.ms/InstallAzureCLIDeb | sudo bash`
+    - Run `curl -LsSf https://aka.ms/InstallAzureCLIDeb | sudo bash`
     - Login to Azure with `az login`. Use `az login --tenant 7f292395-a08f-4cc0-b3d0-a400b023b0d2`
+
+6. Run the project:
+
+    - `uv run python pm_buddy/workflow.py`

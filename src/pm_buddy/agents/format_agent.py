@@ -29,7 +29,7 @@ class IssueFormatAgent(ChatAgent):
                 server=MCPStreamableHTTPTool(
                     name="github-mcp",
                     url="https://api.githubcopilot.com/mcp/",
-                    headers={"Authorization": f"Bearer {os.environ['GITHUB_TOKEN']}"},
+                    headers={"Authorization": f"Bearer {os.environ['GITHUB_APP_TOKEN']}"},
                 ),
                 filter_func=lambda f: "get_issue" in f.name or "update_issue" in f.name
             ),

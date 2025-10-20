@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "agent-framework>=1.0.0b251007",
+    "agent-framework-devui>=1.0.0b251007",
     "python-dotenv>=1.1.1",
     "tenacity>=8.0.0",
 ]
