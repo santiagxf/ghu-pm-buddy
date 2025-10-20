@@ -64,7 +64,7 @@ def build_workflow() -> WorkflowBuilder:
         id="root-cause-agent",
         name="root-cause-agent",
         client=model,
-    )   
+    )
 
     workflow = (
         WorkflowBuilder()

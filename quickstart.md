@@ -32,4 +32,8 @@ Follow this steps to get the environment ready:
 
 6. Run the project:
 
-    - `uv run python pm_buddy/workflow.py`
+    - `uv run python pm_buddy/main.py --devui`
+
+7. Or
+
+    - `uv run python pm_buddy/main.py --input "You are assigned issue #8 at santiagxf/travel-app"`

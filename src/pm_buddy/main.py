@@ -26,13 +26,6 @@ def run_devui():
 if __name__ == "__main__":  
     load_dotenv()
 
-    # Configure logging to output to console
-    logging.basicConfig(
-        level=logging.WARNING,  # Set to WARNING to see warning logs
-        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-        handlers=[logging.StreamHandler()]
-    )
-
     setup_observability(
         enable_sensitive_data=True,
         applicationinsights_connection_string=os.environ.get(
@@ -40,6 +33,13 @@ if __name__ == "__main__":
         ),
         vs_code_extension_port=4317,
     )
+
+    if "--debug" in sys.argv:
+        logging.basicConfig(
+            level=logging.WARNING,  # Set to WARNING to see warning logs
+            format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+            handlers=[logging.StreamHandler()]
+        )
 
     # if runned with command --devui, launch devui
     if "--devui" in sys.argv:
