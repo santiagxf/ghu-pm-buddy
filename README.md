@@ -34,59 +34,34 @@ Issue Created → Format Agent → [Bug? → Root Cause Agent] → Refine Agent
 ### Prerequisites
 
 - GitHub Codespaces (recommended) or local dev container
+- A GitHub App (or you can use your PAT)
 - Azure CLI access
-- GitHub App credentials (for MCP integration)
-- Azure OpenAI deployment
+- Azure AI Foundry project with model deployment or access to GitHub Models.
 
 ### Setup
 
-1. **Open in GitHub Codespaces**
-   ```bash
-   # The repository is configured with a dev container
-   # that includes all necessary tools
-   ```
+Follow this steps to get the environment ready:
 
-2. **Install AI Toolkit Extension**
-   ```bash
-   # From VS Code command palette
-   Extensions: Install from VSIX
-   # Navigate to /extensions and install the VSIX files
-   ```
+1. Open the repository in GitHub Codespaces.
+1. Install the AI Toolkit extension.
+2. Install `uv` package manager:
+    - In the console type `curl -LsSf https://astral.sh/uv/install.sh | sh`
+    - Type `uv --version` to confirm `uv` is installed.
 
-3. **Install Dependencies**
-   ```bash
-   # Install uv package manager
-   curl -LsSf https://astral.sh/uv/install.sh | sh
-   
-   # Install project dependencies
-   cd src
-   uv sync
-   ```
+3. Install packages.
+    - Move to the folder `src`.
+    - Restore the project with `uv sync`.
 
-4. **Configure Environment**
-   ```bash
-   # Create .env file from template
-   cp .env.example .env
-   
-   # Edit .env and add:
-   # - Azure OpenAI credentials
-   # - GitHub App ID and private key
-   # - Application Insights connection string (optional)
-   
-   # Add to ~/.bashrc
-   export UV_ENV_FILE=".env"
-   ```
+4. Configure `uv` environment file:
+    - Edit the file `.env.example` and rename it to `.env`.
+    - Configure the environment variables indicated there.
+    - Edit `~/.bashrc` and add `export UV_ENV_FILE=".env"`.
 
-5. **Setup Azure CLI**
-   ```bash
-   # Install Azure CLI
-   curl -LsSf https://aka.ms/InstallAzureCLIDeb | sudo bash
-   
-   # Login
-   az login
-   ```
+5. Install the Azure CLI tool:
+    - Run `curl -LsSf https://aka.ms/InstallAzureCLIDeb | sudo bash`
+    - Login to Azure with `az login`. Use `az login --tenant 7f292395-a08f-4cc0-b3d0-a400b023b0d2`
 
-6. **Configure MCP**
+6. Configure MCP
    
    Edit `mcp.json` to configure the GitHub MCP server with your access token:
    ```json
@@ -127,7 +102,7 @@ uv run python pm_buddy/main.py --input "You are assigned issue #8 at santiagxf/t
 Enable detailed logging:
 
 ```bash
-uv run python pm_buddy/main.py --debug --input "Your issue description"
+uv run python pm_buddy/main.py --debug --input "You are assigned issue #8 at santiagxf/travel-app"
 ```
 
 ## 🧪 Demo Walkthrough
