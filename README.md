@@ -181,7 +181,7 @@ This is a demo project for GitHub Universe 2025. Feel free to fork and experimen
 
 ## 📝 License
 
-This project is provided as-is for educational and demonstration purposes.
+This project is licensed under the terms of the MIT open source license. Please refer to the [LICENSE](./LICENSE) file for the full terms.
 
 ## 🎤 About This Talk
 
