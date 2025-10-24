@@ -135,7 +135,7 @@ pm_buddy/
 ## 🔧 Key Features
 
 ### Multi-Agent Collaboration
-Agents work together in a workflow, each specialized for specific tasks. The workflow intelligently routes issues based on their type and labels.
+Agents work together in a workflow, each specialized for specific tasks. The workflow intelligently routes issues based on their type and labels. Microsoft Agent Framework allows the composability of multiple agents and their orchestration.
 
 ### MCP Integration
 Uses the Model Context Protocol to provide agents with standardized tools for:
@@ -188,10 +188,10 @@ This project is licensed under the terms of the MIT open source license. Please 
 PM Buddy demonstrates the power of combining:
 - **AI Agents** for autonomous task execution
 - **MCP** for standardized tool integration
-- **Workflow orchestration** for complex automation
-- **Azure AI** for enterprise-grade AI capabilities
+- **Microsft Agent Framework** for orchestration and complex automation
+- **Azure AI Foundry** for enterprise-grade AI capabilities
 
-Learn how to build your own AI-powered automation using GitHub Copilot, Azure OpenAI, and the emerging MCP ecosystem.
+Learn how to build your own AI-powered automation using GitHub Copilot, Azure, and the emerging MCP ecosystem.
 
 ---
 
