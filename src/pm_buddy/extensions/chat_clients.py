@@ -54,14 +54,3 @@ class AzureOpenAIChatClientWithRetry(AzureOpenAIChatClient):
         """Get response with retry on rate limit errors (429 status code only)."""
         return super().get_response(*args, **kwargs)
 
-    # @override
-    # @retry(
-    #     stop=stop_after_attempt(retry_attempts),
-    #     wait=wait_exponential(multiplier=1, min=4, max=10),
-    #     retry=retry_if_exception(_is_rate_limit_error),
-    #     reraise=True,
-    #     before_sleep=_before_sleep_log
-    # )
-    # def get_streaming_response(self, *args, **kwargs):
-    #     """Get streaming response with retry on rate limit errors (429 status code only)."""
-    #     return super().get_streaming_response(*args, **kwargs)

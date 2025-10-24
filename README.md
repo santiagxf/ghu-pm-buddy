@@ -94,7 +94,7 @@ uv run python pm_buddy/main.py --devui
 Process a specific GitHub issue:
 
 ```bash
-uv run python pm_buddy/main.py --input "You are assigned issue #8 at santiagxf/travel-app"
+uv run python pm_buddy/main.py --input "You are assigned issue #26 at santiagxf/travel-app"
 ```
 
 ### Debug Mode

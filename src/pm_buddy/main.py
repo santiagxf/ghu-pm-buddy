@@ -17,10 +17,11 @@ def run_devui():
 
     logger.info("Building Agent Workflow...")
     workflow = build_workflow()
+    port = 8093
 
     logger.info("Starting Agent Workflow in DevUI...")
-    logger.info("Available at: http://localhost:8093")
-    serve(entities=[workflow], port=8093, auto_open=True)
+    logger.info(f"Available at: http://localhost:{port}")
+    serve(entities=[workflow], port=port, auto_open=True)
 
 
 if __name__ == "__main__":  
@@ -28,10 +29,6 @@ if __name__ == "__main__":
 
     setup_observability(
         enable_sensitive_data=True,
-        applicationinsights_connection_string=os.environ.get(
-            "AGENT_FRAMEWORK_MONITOR_CONNECTION_STRING"
-        ),
-        vs_code_extension_port=4317,
     )
 
     if "--debug" in sys.argv:
