@@ -1,7 +1,8 @@
+"""Main entry point for the PM Buddy agent workflow."""
+
 import asyncio
 import logging
 import sys
-import os
 
 from dotenv import load_dotenv
 from agent_framework.observability import setup_observability
@@ -20,7 +21,7 @@ def run_devui():
     port = 8093
 
     logger.info("Starting Agent Workflow in DevUI...")
-    logger.info(f"Available at: http://localhost:{port}")
+    logger.info("Available at: http://localhost:%s", port)
     serve(entities=[workflow], port=port, auto_open=True)
 
 
