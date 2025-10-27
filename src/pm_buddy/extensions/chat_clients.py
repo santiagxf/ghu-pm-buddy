@@ -1,5 +1,8 @@
+"""Extensions for chat clients with retry logic for rate limiting."""
+
 import logging
 from typing import override
+from agent_framework import ChatResponse
 from openai import RateLimitError
 from agent_framework.azure import AzureOpenAIChatClient
 from agent_framework.exceptions import ServiceResponseException
@@ -46,11 +49,10 @@ class AzureOpenAIChatClientWithRetry(AzureOpenAIChatClient):
     @retry(
         stop=stop_after_attempt(retry_attempts),
         wait=wait_exponential(multiplier=1, min=4, max=10),
-        retry=retry_if_exception_type(RateLimitError),
+        retry=retry_if_exception_type(ServiceResponseException),
         reraise=True,
         before_sleep=_before_sleep_log
     )
-    def get_response(self, *args, **kwargs):
+    async def _inner_get_response(self, *args, **kwargs) -> ChatResponse:
         """Get response with retry on rate limit errors (429 status code only)."""
-        return super().get_response(*args, **kwargs)
-
+        return await super()._inner_get_response(*args, **kwargs)
