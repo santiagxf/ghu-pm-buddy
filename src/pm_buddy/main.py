@@ -6,7 +6,7 @@ import sys
 
 from dotenv import load_dotenv
 from agent_framework.observability import setup_observability
-from agent_framework.devui import serve
+from agent_framework_devui import serve
 
 from pm_buddy.extensions.token_provider import set_github_access_token_from_env
 from pm_buddy.workflow import build_workflow, run_once
