@@ -26,7 +26,7 @@ def run_devui():
     serve(entities=[workflow], port=port, auto_open=True)
 
 
-if __name__ == "__main__":  
+if __name__ == "__main__":
     load_dotenv()
 
     set_github_access_token_from_env(
