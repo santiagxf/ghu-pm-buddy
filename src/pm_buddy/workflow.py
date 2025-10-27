@@ -15,7 +15,6 @@ from azure.identity import AzureCliCredential
 from pm_buddy.agents import IssueFormatAgent, RefineAgent, InvestigateAgent, RootCauseAnalysisAgent
 from pm_buddy.agents.format_agent import GitHubIssue
 from pm_buddy.extensions.chat_clients import AzureOpenAIChatClientWithRetry
-from pm_buddy.extensions.token_provider import set_github_access_token_from_env
 
 logger = logging.getLogger(__name__)
 
@@ -38,11 +37,6 @@ def build_workflow() -> WorkflowBuilder:
 
     model = AzureOpenAIChatClientWithRetry(
         deployment_name="gpt-4.1", credential=AzureCliCredential()
-    )
-
-    set_github_access_token_from_env(
-        app_id_env="PMBUDDY_APP_ID",
-        secret_key_env="PMBUDDY_PRIVATE_KEY",
     )
 
     format_agent = IssueFormatAgent(

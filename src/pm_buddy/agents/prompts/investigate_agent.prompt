@@ -75,6 +75,6 @@ Only include issues with meaningful connections. Avoid listing issues that merel
 
 ## Final actions:
 
-1. Remove label `investigate`.
-2. Create a comment in the issue with the report. Only include the sections mentioned above. Do not add any other text.
+1. Create a comment in the issue with the report. Only include the sections mentioned above. Do not add any other text.
+2. Remove label `investigate`.
 3. Add the label `needs-refinement`.

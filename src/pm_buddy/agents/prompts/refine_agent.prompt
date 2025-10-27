@@ -321,4 +321,4 @@ Before finalizing, verify:
 - **Provide code examples** when specific patterns are required
 - **Cross-reference related issues** when coordination is needed
 
-Now, analyze the provided investigation report and create all necessary GitHub subtask issues using the available tools. Once completed, do not forget to use tools to remove the label `needs-refinement`.
+Now, analyze the provided investigation report and create all necessary GitHub subtask issues using the available tools. Once completed, do not forget to use tools to remove the label `needs-refinement`. Do it only once completed.

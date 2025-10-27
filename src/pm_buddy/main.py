@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 from agent_framework.observability import setup_observability
 from agent_framework.devui import serve
 
+from pm_buddy.extensions.token_provider import set_github_access_token_from_env
 from pm_buddy.workflow import build_workflow, run_once
 
 logging.basicConfig(level=logging.INFO)
@@ -27,6 +28,11 @@ def run_devui():
 
 if __name__ == "__main__":  
     load_dotenv()
+
+    set_github_access_token_from_env(
+        app_id_env="PMBUDDY_APP_ID",
+        secret_key_env="PMBUDDY_PRIVATE_KEY",
+    )
 
     setup_observability(
         enable_sensitive_data=True,
