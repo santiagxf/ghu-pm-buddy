@@ -3,7 +3,6 @@
 import logging
 from typing import override
 from agent_framework import ChatResponse
-from openai import RateLimitError
 from agent_framework.azure import AzureOpenAIChatClient
 from agent_framework.exceptions import ServiceResponseException
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type, RetryCallState
