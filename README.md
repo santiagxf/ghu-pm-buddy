@@ -59,24 +59,8 @@ Follow this steps to get the environment ready:
 
 5. Install the Azure CLI tool:
     - Run `curl -LsSf https://aka.ms/InstallAzureCLIDeb | sudo bash`
-    - Login to Azure with `az login`. Use `az login --tenant 7f292395-a08f-4cc0-b3d0-a400b023b0d2`
+    - Login to Azure with `az login`. Use `az login`
 
-6. Configure MCP
-   
-   Edit `mcp.json` to configure the GitHub MCP server with your access token:
-   ```json
-   {
-     "servers": {
-       "github": {
-         "type": "http",
-         "url": "https://api.githubcopilot.com/mcp/",
-         "headers": {
-           "Authorization": "Bearer YOUR_ACCESS_TOKEN"
-         }
-       }
-     }
-   }
-   ```
 
 ## 🎮 Usage
 
@@ -117,19 +101,19 @@ Check out the [Demo Script](./demo-script.md) for a step-by-step walkthrough of:
 
 ```
 pm_buddy/
-├── agents/               # Agent implementations
-│   ├── format_agent.py   # Issue formatting and labeling
+├── agents/                   # Agent implementations
+│   ├── prompts/              # Agent instruction templates
 │   ├── investigate_agent.py  # Code search and context gathering
-│   ├── refine_agent.py   # Report synthesis
-│   ├── root_cause_agent.py   # Bug analysis
-│   └── prompts/          # Agent instruction templates
-├── extensions/           # Custom integrations
-│   ├── chat_clients.py   # Azure OpenAI client with retry logic
-│   └── token_provider.py # GitHub App authentication
-├── tools/                # MCP tool configuration
-│   └── toolkits.py       # Tool filtering utilities
-├── main.py               # Entry point
-└── workflow.py           # Workflow orchestration
+│   ├── refine_agent.py       # Report synthesis
+│   ├── format_agent.py       # Issue formatting and labeling
+│   └── root_cause_agent.py   # Bug analysis
+├── extensions/               # Custom integrations
+│   ├── chat_clients.py       # Azure OpenAI client with retry logic
+│   └── token_provider.py     # GitHub App authentication
+├── tools/                    # MCP tool configuration
+│   └── toolkits.py           # Tool filtering utilities
+├── main.py                   # Entry point
+└── workflow.py               # Workflow orchestration
 ```
 
 ## 🔧 Key Features
