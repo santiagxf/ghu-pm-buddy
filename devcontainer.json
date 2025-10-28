@@ -1,0 +1,7 @@
+{
+    "features": {
+        "codespaces": {
+            "idleTimeoutMinutes": 120
+        }
+    }
+}
