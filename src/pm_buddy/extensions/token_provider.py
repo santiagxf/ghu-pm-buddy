@@ -24,12 +24,12 @@ def set_github_access_token_from_env(
     """
     app_id = os.environ.get(app_id_env)
     secret_key = os.environ.get(secret_key_env)
-    
+
     if not app_id:
         raise ValueError(f"Environment variable {app_id_env} is not set")
     if not secret_key:
         raise ValueError(f"Environment variable {secret_key_env} is not set")
-    
+
     # Handle newlines in private key if stored as escaped string
     if '\\n' in secret_key:
         secret_key = secret_key.replace('\\n', '\n')
@@ -50,7 +50,7 @@ def set_github_access_token_from_env(
     installation_id = None
     if installation_id_env:
         installation_id = os.environ.get(installation_id_env)
-    
+
     if not installation_id:
         # Fetch all installations for this app
         headers = {
@@ -64,10 +64,10 @@ def set_github_access_token_from_env(
         )
         installations_response.raise_for_status()
         installations = installations_response.json()
-        
+
         if not installations:
             raise ValueError("No installations found for this GitHub App")
-        
+
         # Use the first installation
         installation_id = installations[0]['id']
         print(f"Using installation ID: {installation_id} (account: {installations[0]['account']['login']})")
@@ -84,11 +84,11 @@ def set_github_access_token_from_env(
     )
     response.raise_for_status()
     token_data = response.json()
-    
+
     access_token = token_data['token']
     print(f"GitHub access token obtained successfully for installation {installation_id}.")
     os.environ["GITHUB_APP_TOKEN"] = access_token
-    
+
     return access_token
 
 
