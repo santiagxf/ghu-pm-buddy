@@ -4,7 +4,7 @@
       "type": "http",
       "url": "https://api.githubcopilot.com/mcp/",
       "headers": {
-        "Authorization": "Bearer {{YOUR_ACCESS_TOKEN}}"
+        "Authorization": "Bearer ${env:GITHUB_TOKEN}"
       }
     }
   }

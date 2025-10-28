@@ -81,6 +81,20 @@ The previous example works, but we would like to avoid passing directly the issu
 4. Select **GitHub**.
 5. Enter a name for the MCP server.
 6. Configure authentication for the MCP server. AI Toolkit will generate an `mcp.json` file to use for configuration. By default, it's saved in the folder `/home/codespace/.aitk/mcp.json`.
+    ```json
+    {
+      "servers": {
+        "github": {
+          "type": "http",
+          "url": "https://api.githubcopilot.com/mcp/",
+          "headers": {
+            "Authorization": "Bearer ${env:GITHUB_TOKEN}"
+          }
+        }
+      }
+    }
+    ```
+
 7. Now, go to the section **My resources** and under **MCP Servers** you will see a new server added to the list.
 8. Check the connection by right click on the new item, and select **Start**.
 9. Now, in **Agent Builder**, go to the section **MCP tools** and select the plus sign, click on **MCP Server**.
