@@ -49,14 +49,14 @@ def build_workflow() -> WorkflowBuilder:
         name="investigate-agent",
         client=model,
     )
-    refine_agent = RefineAgent(
-        id="refine-agent",
-        name="refine-agent",
-        client=model,
-    )
     root_cause_agent = RootCauseAnalysisAgent(
         id="root-cause-agent",
         name="root-cause-agent",
+        client=model,
+    )
+    refine_agent = RefineAgent(
+        id="refine-agent",
+        name="refine-agent",
         client=model,
     )
 

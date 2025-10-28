@@ -34,9 +34,7 @@ if __name__ == "__main__":
         secret_key_env="PMBUDDY_PRIVATE_KEY",
     )
 
-    setup_observability(
-        enable_sensitive_data=True,
-    )
+    setup_observability()
 
     if "--debug" in sys.argv:
         logging.basicConfig(
