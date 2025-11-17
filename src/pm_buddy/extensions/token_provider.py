@@ -25,6 +25,12 @@ def set_github_access_token_from_env(
     app_id = os.environ.get(app_id_env)
     secret_key = os.environ.get(secret_key_env)
 
+    # if secret_key is a path to a pem file, read it instead from the path
+    if secret_key and secret_key.endswith('.pem') and os.path.isfile(secret_key):
+        print("Reading private key from PEM file path %s" % secret_key)
+        with open(secret_key, 'r', encoding='utf-8') as pem_file:
+            secret_key = pem_file.read()
+
     if not app_id:
         raise ValueError(f"Environment variable {app_id_env} is not set")
     if not secret_key:

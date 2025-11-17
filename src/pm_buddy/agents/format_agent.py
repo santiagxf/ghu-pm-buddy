@@ -31,7 +31,7 @@ class IssueFormatAgent(ChatAgent):
                     url="https://api.githubcopilot.com/mcp/",
                     headers={"Authorization": f"Bearer {os.environ['GITHUB_APP_TOKEN']}"},
                 ),
-                filter_func=lambda f: "get_issue" in f.name or "update_issue" in f.name
+                filter_func=lambda f: "issue_read" in f.name or "issue_write" in f.name
             ),
             response_format=GitHubIssue,
             **kwargs
