@@ -8,7 +8,6 @@ from dotenv import load_dotenv
 from agent_framework.observability import setup_observability
 from agent_framework_devui import serve
 
-from azure.ai.agentserver.agentframework import from_agent_framework
 from azure.identity import DefaultAzureCredential
 
 from pm_buddy.extensions.token_provider import set_github_access_token_from_env
@@ -32,7 +31,8 @@ def run_devui(port: int = 8093):
 
 def run_server(port: int = 8088):
     """Launch the agent workflow in Agents Hosting."""
-
+    from azure.ai.agentserver.agentframework import from_agent_framework
+    
     logger.info("Building Agent Workflow...")
     workflow = build_workflow()
 

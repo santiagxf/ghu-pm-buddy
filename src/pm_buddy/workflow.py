@@ -24,7 +24,6 @@ def has_label_condition(label: str) -> Callable[[AgentExecutorResponse], bool]:
     """Generate a condition function to check if the issue has a specific label."""
 
     def condition(response: AgentExecutorResponse) -> bool:
-        print("Checking for label:", label)
         if not isinstance(response, AgentExecutorResponse):
             return True
 
