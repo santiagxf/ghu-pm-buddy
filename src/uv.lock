@@ -439,7 +439,7 @@ wheels = [
 
 [[package]]
 name = "azure-ai-agentserver-agentframework"
-version = "1.0.0b4"
+version = "1.0.0b5"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "agent-framework-azure-ai" },
@@ -447,14 +447,14 @@ dependencies = [
     { name = "azure-ai-agentserver-core" },
     { name = "opentelemetry-exporter-otlp-proto-grpc" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/65/34/25db2cea363ca1171bd36e1d54dfc1592313e1324b5595bd0f7958b72393/azure_ai_agentserver_agentframework-1.0.0b4.tar.gz", hash = "sha256:13c79553bac2203e579294e59528aea1c9aaf4b5d6a7041cf9ebd58b49fe92e8", size = 32349, upload-time = "2025-11-14T03:27:04.776Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/a5/f4/250a91e19e4bb0b096c211c3c4badbc6e664575471191309eb344bb6ce8c/azure_ai_agentserver_agentframework-1.0.0b5.tar.gz", hash = "sha256:19335d382a0cc6dbf85b0772c379ed5c286f24bfb828fe8753a0a8537fccc86d", size = 32845, upload-time = "2025-11-18T02:37:07.089Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/29/a0/406638ea998ba4a4ac5de4ef20b21352fc69e184ac8043c421361cf98cb5/azure_ai_agentserver_agentframework-1.0.0b4-py3-none-any.whl", hash = "sha256:031887833de45a9edca7f1ade2dc1ac261dfd8ee74d1e461daf47ec8c65d5ef3", size = 20972, upload-time = "2025-11-14T03:27:05.877Z" },
+    { url = "https://files.pythonhosted.org/packages/fc/a1/6ff296651d0f1781b7acd12de1b66d5db072db06adaec5ab42dbcf68ada6/azure_ai_agentserver_agentframework-1.0.0b5-py3-none-any.whl", hash = "sha256:6a2dec78e69b81f8b0892f5be57d3f25b28f2dd1fd97f032efb4c0edc7292e3f", size = 21676, upload-time = "2025-11-18T02:37:07.942Z" },
 ]
 
 [[package]]
 name = "azure-ai-agentserver-core"
-version = "1.0.0b4"
+version = "1.0.0b5"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "azure-ai-agents" },
@@ -468,9 +468,9 @@ dependencies = [
     { name = "starlette" },
     { name = "uvicorn" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/d2/fb/777edb78674dbda7e886c49ef404ee961c146a1a92b4ef1db88b6b288da3/azure_ai_agentserver_core-1.0.0b4.tar.gz", hash = "sha256:d6bfac529dd5bbd511bc1b4134e9b611574eab7bc96eba569483585236841f0f", size = 151596, upload-time = "2025-11-14T03:27:30.594Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/33/9c/d45ec2e0b0050ade19e2f1d278dd4c2d10a82236d830b83b80ab7b4425e8/azure_ai_agentserver_core-1.0.0b5.tar.gz", hash = "sha256:b43942e6c318958c951a876343613bdc19f2b0736bfbb8f588000bb94905aafe", size = 154108, upload-time = "2025-11-18T02:15:27.144Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b6/25/ec49ae509c4a27d710db311bc2f1c45d22cd7d10828b0ecfdb6a3ba22f21/azure_ai_agentserver_core-1.0.0b4-py3-none-any.whl", hash = "sha256:ffbc7553a082dfa03a2b0e6885348defcb66920a7231cf049c3d25eb28e0f327", size = 147495, upload-time = "2025-11-14T03:27:32.017Z" },
+    { url = "https://files.pythonhosted.org/packages/d8/76/cd6694268336c0948d7e9584ef99df73d76071c555369c619c451da92528/azure_ai_agentserver_core-1.0.0b5-py3-none-any.whl", hash = "sha256:352ad161755f1f1ad0442a9b65617c50d0b7fc3cf0552f5c14e37a69270da912", size = 150187, upload-time = "2025-11-18T02:15:28.56Z" },
 ]
 
 [[package]]
@@ -2109,8 +2109,8 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "agent-framework", specifier = ">=1.0.0b251114" },
-    { name = "agent-framework-devui", specifier = ">=1.0.0b251114" },
+    { name = "agent-framework", specifier = ">=1.0.0b251007" },
+    { name = "agent-framework-devui", specifier = ">=1.0.0b251007" },
     { name = "azure-ai-agentserver-agentframework", specifier = ">=1.0.0b4" },
     { name = "azure-ai-agentserver-core", specifier = ">=1.0.0b4" },
     { name = "python-dotenv", specifier = ">=1.1.1" },

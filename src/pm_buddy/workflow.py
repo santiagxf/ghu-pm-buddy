@@ -3,6 +3,7 @@
 import logging
 from typing import Callable
 from opentelemetry.trace import SpanKind
+from pydantic import ValidationError
 from agent_framework.observability import get_tracer
 
 from agent_framework import (
@@ -29,9 +30,9 @@ def has_label_condition(label: str) -> Callable[[AgentExecutorResponse], bool]:
 
         try:
             issue = GitHubIssue.model_validate_json(response.agent_run_response.text)
-        except Exception as e:
-            print("Error parsing issue from response:", e)
-            print("Full text", response.agent_run_response.text)
+        except ValidationError as e:
+            logger.error("Error parsing issue from response: %s. "
+                         "Full text: %s", e, response.agent_run_response.text)
             return False
         return issue.labels and label in issue.labels
 
@@ -42,7 +43,7 @@ def build_workflow() -> WorkflowBuilder:
     """Main function to set up and run the workflow."""
 
     model = AzureOpenAIChatClientWithRetry(
-        deployment_name="gpt-4o", credential=DefaultAzureCredential()
+        deployment_name="gpt-5", credential=DefaultAzureCredential()
     )
 
     format_agent = IssueFormatAgent(
@@ -69,14 +70,14 @@ def build_workflow() -> WorkflowBuilder:
     workflow = (
         WorkflowBuilder()
         .add_agent(format_agent, id="format-agent")
-#        .add_agent(investigate_agent, id="investigate-agent")
-#        .add_agent(refine_agent, id="refine-agent")
-#        .add_agent(root_cause_agent, id="root-cause-agent")
+        .add_agent(investigate_agent, id="investigate-agent")
+        .add_agent(refine_agent, id="refine-agent")
+        .add_agent(root_cause_agent, id="root-cause-agent")
         .set_start_executor(format_agent)
-#        .add_edge(format_agent, investigate_agent, has_label_condition("enhancement"))
-#        .add_edge(format_agent, root_cause_agent, has_label_condition("bug"))
-#        .add_edge(investigate_agent, refine_agent)
-#        .add_edge(root_cause_agent, refine_agent)
+        .add_edge(format_agent, investigate_agent, has_label_condition("enhancement"))
+        .add_edge(format_agent, root_cause_agent, has_label_condition("bug"))
+        .add_edge(investigate_agent, refine_agent)
+        .add_edge(root_cause_agent, refine_agent)
         .build()
     )
 
@@ -101,17 +102,15 @@ async def run_once(inputs: str) -> str:
         attributes={
             "gen_ai.system": "agent-framework", 
             "gen_ai.operation.name": "invoke_agent",
-            "gen_ai.agent.id": "pm-buddy-workflow:2"
+            "gen_ai.agent.id": "pm-buddy-workflow"
         },
     ):
         events = await workflow.run(inputs)
 
         for event in events:
             if isinstance(event, AgentRunEvent):
-                logger.info(f"{event.executor_id}: {event.data}")
+                logger.info("%s: %s", event.executor_id, event.data)
 
-        # Summarize the final run state (e.g., COMPLETED)
         final_state = events.get_final_state()
-        logger.info(f"Final state: {final_state}")
-
+        logger.info("Final state: %s", final_state)
         return final_state

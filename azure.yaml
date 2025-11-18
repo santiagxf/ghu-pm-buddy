@@ -22,11 +22,11 @@ services:
             deployments:
                 - model:
                     format: OpenAI
-                    name: gpt-4o
-                    version: "2024-07-18"
-                  name: gpt-4o
+                    name: gpt-5
+                    version: "2025-08-07"
+                  name: gpt-5
                   sku:
-                    capacity: 10
+                    capacity: 30
                     name: GlobalStandard
 infra:
     provider: bicep

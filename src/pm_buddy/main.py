@@ -12,7 +12,6 @@ from azure.ai.agentserver.agentframework import from_agent_framework
 from azure.identity import DefaultAzureCredential
 
 from pm_buddy.extensions.token_provider import set_github_access_token_from_env
-from pm_buddy.extensions.agentserver import patch_transform_output_for_response
 from pm_buddy.workflow import build_workflow, run_once
 
 
@@ -31,7 +30,7 @@ def run_devui(port: int = 8093):
     serve(entities=[workflow], port=port, auto_open=True)
 
 
-def run_server(port: int = 8083):
+def run_server(port: int = 8088):
     """Launch the agent workflow in Agents Hosting."""
 
     logger.info("Building Agent Workflow...")
@@ -43,7 +42,7 @@ def run_server(port: int = 8083):
 if __name__ == "__main__":
     load_dotenv()
 
-    token = set_github_access_token_from_env(
+    set_github_access_token_from_env(
         app_id_env="PMBUDDY_APP_ID",
         secret_key_env="PMBUDDY_PRIVATE_KEY",
     )
@@ -61,8 +60,8 @@ if __name__ == "__main__":
     if "--devui" in sys.argv:
         run_devui()
     elif "--input" in sys.argv:
-        setup_observability()
-        
+        setup_observability(enable_sensitive_data=True)
+
         # gets the input from command line argument --input
         input_index = sys.argv.index("--input") + 1 if "--input" in sys.argv else -1
         inputs = sys.argv[input_index]
@@ -70,5 +69,5 @@ if __name__ == "__main__":
         asyncio.run(run_once(inputs))
     else:
         port_index = sys.argv.index("--port") + 1 if "--port" in sys.argv else -1
-        port = int(sys.argv[port_index]) if port_index != -1 else 8093
-        run_server(port)
+        port_input = int(sys.argv[port_index]) if port_index != -1 else 8093
+        run_server(port_input)
