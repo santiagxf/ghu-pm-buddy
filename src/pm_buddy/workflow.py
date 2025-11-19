@@ -37,7 +37,6 @@ def has_label_condition(label: str) -> Callable[[AgentExecutorResponse], bool]:
 
     return condition
 
-
 def build_workflow() -> WorkflowBuilder:
     """Main function to set up and run the workflow."""
 

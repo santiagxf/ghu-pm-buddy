@@ -17,7 +17,7 @@ services:
                     cpu: "2"
                     memory: 2Gi
                 scale:
-                    maxReplicas: 3
+                    maxReplicas: 1
                     minReplicas: 1
             deployments:
                 - model:

@@ -2,7 +2,7 @@
 
 kind: hosted
 name: pm-buddy-workflow
-description: A PM assistant worklfow that helps to investigate and triage issues in GitHub repos.
+description: A PM assistant workflow that helps to investigate and triage issues in GitHub repos.
 metadata:
     authors:
         - santiagxf
@@ -12,6 +12,8 @@ metadata:
     tags:
         - productivity
 protocols:
+    - protocol: responses
+      version: v1
 environment_variables:
     - name: AZURE_OPENAI_ENDPOINT
       value: ${AZURE_OPENAI_ENDPOINT}
