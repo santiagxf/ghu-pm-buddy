@@ -17,7 +17,6 @@ The workflow intelligently branches based on issue type (bug vs. enhancement) an
 
 ## 🏗️ Architecture
 
-```
 ```text
                      +----------------+
                      |  Issue Created |
@@ -62,7 +61,6 @@ The workflow intelligently branches based on issue type (bug vs. enhancement) an
              | Updated issue output / |
              | actionable next steps  |
              +------------------------+
-```
 ```
 
 ### Key Components
