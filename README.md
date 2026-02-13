@@ -18,8 +18,51 @@ The workflow intelligently branches based on issue type (bug vs. enhancement) an
 ## 🏗️ Architecture
 
 ```
-Issue Created → Format Agent → [Bug? → Root Cause Agent] → Refine Agent
-                            → [Enhancement? → Investigate Agent] → Refine Agent
+```text
+                     +----------------+
+                     |  Issue Created |
+                     +----------------+
+                             |
+                             v
+                     +----------------+
+                     |  Format Agent  |
+                     | - standardize  |
+                     |   markdown     |
+                     | - apply labels |
+                     +----------------+
+                             |
+                             v
+               +-----------------------+
+               | Branch on issue type? |
+               +-----------------------+
+                    |             |
+                    | Bug         | Enhancement
+                    v             v
+             +----------------+   +---------------------+
+             |  Root Cause    |   |   Investigate Agent |
+             |     Agent      |   | - search codebase   |
+             | - analyze bug  |   | - find related      |
+             | - identify     |   |   issues/PRs        |
+             |   likely cause |   | - gather context    |
+             +----------------+   +---------------------+
+                    |                 |
+                    +--------+--------+
+                             |
+                             v
+                     +----------------+
+                     |  Refine Agent  |
+                     | - synthesize   |
+                     |   results into |
+                     |   actionable   |
+                     |   report       |
+                     +----------------+
+                             |
+                             v
+             +------------------------+
+             | Updated issue output / |
+             | actionable next steps  |
+             +------------------------+
+```
 ```
 
 ### Key Components
